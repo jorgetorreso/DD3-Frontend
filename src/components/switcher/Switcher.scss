@@ -1,0 +1,201 @@
+.switch {
+  display: flex;
+  position: relative;
+}
+
+.switch__input {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.switch__label {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(-180deg, rgba(43, 68, 133, 1) 0%, rgba(175, 202, 255, 1) 100%);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  box-shadow: 0px 5px 10px 1px rgba(43, 68, 133, 0.25) inset;
+}
+
+.switch__indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(-72%);
+  display: block;
+  width: 18px;
+  height: 18px;
+  background : linear-gradient(180deg, rgba(214, 233, 255, 1) 0%, rgba(205, 228, 255, 1) 100%);  
+  border-radius: 9999px;
+  box-shadow: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    display: none;
+    background-color: #ffffff;
+    border-radius: 9999px;
+  }
+
+  &::before {
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: #ffffff;
+    background: linear-gradient(180deg, rgb(206, 229, 255) 0%, rgb(237, 246, 255) 99.99%, rgb(241, 249, 255) 100%);
+    display: block;
+  }
+
+  &::after {
+    bottom: 8px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    background-color: #ffffff;
+    opacity: 0.8;
+  }
+}
+
+.switch__decoration {
+    position: absolute;
+    top: 35%;
+    left: 54%;
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: #ffffff;
+    border-radius: 9999px;
+    animation: twinkle 0.8s infinite -0.6s;
+
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 5px;
+    height: 5px;
+    background-color: #ffffff;
+    border-radius: 9999px;
+  }
+
+  &::before {
+    top: -6px;
+    left: 10px;
+    opacity: 1;
+    animation: twinkle 0.6s infinite;
+    width: 3px;
+    height: 3px;
+  }
+
+  &::after {
+    top: 3px;
+    left: 16px;
+    width: 3px;
+    height: 3px;
+    animation: twinkle 0.6s infinite -0.2s;
+  }
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.switch__indicator {
+  &,
+  &::before,
+  &::after {
+    transition: all 0.4s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  }
+}
+
+.switch__input:checked + .switch__label {
+  background-color: rgba(102, 255, 237, 1);
+  background: linear-gradient(
+    180deg,
+    rgba(102, 255, 237, 1) 0%,
+    rgba(255, 238, 178, 1) 100%
+  );
+  box-shadow: 0px 5px 10px 1px rgb(0 0 0 / 25%) inset;
+
+  .switch__indicator {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 191, 36, 1) 0%,
+      rgba(244, 146, 75, 1) 100%
+    );
+    box-shadow: 0px 0px 2px 2px rgba(255, 146, 85, 1) inset;
+    transform: translate(-50%, -50%) translateX(72%);
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .switch__decoration {
+    top: 35%;
+    left: 20%;
+    transform: translate(0%, -50%);
+    animation: cloud 8s linear infinite;
+    background: linear-gradient(180deg, rgb(255, 244, 143) 40%, rgba(255, 254, 234, 0) 100%);
+    width: 10px;
+    height: 10px;
+
+    &::before {
+      width: 5px;
+      height: 5px;
+      top: auto;
+      bottom: 0;
+      left: -3px;
+      animation: none;
+      background: linear-gradient(180deg, rgb(255, 244, 143) 0%, rgba(255, 254, 234, 0) 100%);
+    }
+
+    &::after {
+      width: 8px;
+      height: 8px;
+      top: auto;
+      bottom: 0;
+      left: 7px;
+      animation: none;
+      background: linear-gradient(180deg, rgba(255, 244, 143, 1) 33%, rgba(255, 254, 234, 0) 100%);
+    }
+
+    &,
+    &::before,
+    &::after {
+      border-radius: 9999px 9999px 0 0;
+    }
+
+    &::after {
+      border-bottom-right-radius: 9999px;
+    }
+  }
+}
+
+@keyframes cloud {
+  0% {
+    transform: translate(0%, -50%);
+  }
+
+  50% {
+    transform: translate(-100%, -50%);
+  }
+
+  100% {
+    transform: translate(0%, -50%);
+  }
+}
